@@ -1,0 +1,37 @@
+# application: alexander-kuznetsov-static
+runtime: php55
+threadsafe: yes
+
+handlers:
+
+# Serve main page
+- url: /
+  static_files: index.html
+  upload: index.html
+  
+# Stylesheets
+- url: /css
+  static_dir: css
+  
+# Fonts
+- url: /fonts
+  static_dir: fonts
+  
+# Javascript
+- url: /js
+  static_dir: js
+
+# Serve images as static resources.
+- url: /(.+\.(gif|png|jpg|jpeg))$
+  static_files: \1
+  upload: .+\.(gif|png|jpg|jpeg)$
+  application_readable: true
+
+# Serve php scripts.
+- url: /(.+\.php)$
+  script: \1
+  
+  # Serve pdf
+- url: /(.+\.pdf)$
+  static_files: \1
+  upload: /(.+\.pdf)$
